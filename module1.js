@@ -31,9 +31,31 @@ function getRandomInt(min, max) {
 
 $(document).ready(function() {
     var img = new Image();
-    img.src = "img/cat.jpg";
+    img.src = "img/grumpyCat.jpg";
 
+    var pixels = ImageUtils.getPixels(img);
+    var heightPixelsToHide = 200;
+    var heightPixelsToHide2 = 235;
 
+    for(var i = 0; i < img.width * heightPixelsToHide * 4; i++) {
+        pixels.data[i] = 0;
+       // console.log(i);
 
+   }
+  //  console.log(img.width * img.height * 4 - 1);
+  //  console.log(img.width * heightPixelsToHide2 * 4);
+    //
+    //for(var x = (img.width * img.height * 4) - 1; x > (img.width * heightPixelsToHide2 * 4); x = x - 4) {
+    //    pixels.data[x] = 170;
+    //    //  console.log(x);
+    //} //iteration of x = x - 1 means R value; - 2 means G value; -3 means B value; -4 means alpha transparency value
+
+    for(var x = (img.width * heightPixelsToHide2 * 4) - 1; x > (img.width * heightPixelsToHide * 4); x = x - 4) {
+        pixels.data[x] = 170;
+        //  console.log(x);
+    } //Alpha value of near the eyes are slightly transparent
+
+    console.log(pixels);
+    ImageUtils.putPixels(pixels, img.width, img.height);
 
 });
